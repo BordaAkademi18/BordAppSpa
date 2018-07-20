@@ -1,0 +1,17 @@
+@import "./src/custom-theme";
+
+body {
+    margin: 0px;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+}
+
+.primary {
+    background: $primary;
+}
+
+.container {
+    height: 10%;
+    width: 100%;
+}
