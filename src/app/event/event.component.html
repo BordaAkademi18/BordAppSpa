@@ -1,3 +1,130 @@
-<p>
-  event works!
-</p>
+<div class="container-fluid py-5 maindiv">
+  <div class="row">
+    <div class="col-lg-6 main-events">
+      <mat-accordion class="example-headers-align example-full-width">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="example-description">
+              Event details
+            </mat-panel-title>
+            <mat-panel-description class="example-description">
+              Type event name and additional info
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="input-field">
+            <mat-form-field class="rounded-0 control example-spacer">
+              <input matInput #eventname maxlenght="30" placeholder="Event name" required [formControl]="event_name">
+              <mat-error *ngIf="event_name.invalid">{{getErrorMessage()}}</mat-error>
+              <mat-hint align="end">{{eventname.value.length}} / 30</mat-hint>
+            </mat-form-field>
+            <span class="example-spacer"></span>
+            <mat-form-field class="rounded-0 control example-spacer">
+              <input matInput #info maxlength="256" placeholder="Additional info">
+              <mat-hint align="start">
+                <strong>Be informative about event</strong>
+              </mat-hint>
+              <mat-hint align="end">{{info.value.length}} / 256</mat-hint>
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="example-description">
+              Where to attend
+            </mat-panel-title>
+            <mat-panel-description class="example-description">
+              Type the event place
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="Place">
+          </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="example-description">
+              When to attend
+            </mat-panel-title>
+            <mat-panel-description class="example-description">
+              Give the details about time
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field class="rounded-0 control px-3">
+            <input matInput [matDatepicker]="picker" [min]="this.minDate" [max]="this.maxDate" placeholder="Choose a date" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="rounded-0 control px-3">
+            <input type="time" matInput placeholder="Choose a time">
+          </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="example-description">
+              Who to notify
+            </mat-panel-title>
+            <mat-panel-description class="example-description">
+              Select the people you want to notify
+              <mat-icon>contacts</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field class="example-full-width">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let person of people" [selectable]="selectable" [removable]="removable" (removed)="remove(person)">
+                {{person}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New person..." #personInput [formControl]="personCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+                (onfocus)="matAutocomplete.openPanel()">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let person of filteredPeople | async" [value]="person">
+                {{person}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Submit Event</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-lg-6 main-events">
+      <mat-card >
+        <mat-card-content>
+          <mat-list>
+            <h3 mat-subheader>Folders</h3>
+            <mat-list-item *ngFor="let folder of folders">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line>{{folder.name}}</h4>
+              <p mat-line> {{folder.updated | date}} </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Notes</h3>
+            <mat-list-item *ngFor="let note of notes">
+              <mat-icon mat-list-icon>note</mat-icon>
+              <h4 mat-line>{{note.name}}</h4>
+              <p mat-line> {{note.updated | date}} </p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

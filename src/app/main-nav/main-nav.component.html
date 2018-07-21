@@ -7,11 +7,13 @@
         <span>
           Dashboard
         </span></a>
+        <mat-divider></mat-divider>
       <a mat-list-item routerLink="/event">
         <mat-icon color="primary">event</mat-icon>
         <span>
           Events
         </span></a>
+        <mat-divider></mat-divider>
       <a mat-list-item routerLink="/wishbox">
         <mat-icon color="primary">feedback</mat-icon>
         <span>
@@ -20,8 +22,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolbar">
-      <button id="navbarButton" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <mat-toolbar color="primary" class="toolbar navbar-header mat-elevation-z6" >
+      <button *ngIf="true" id="navbarButton" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Neta</span>
@@ -36,7 +38,7 @@
         <i class="fas fa-sign-out-alt"></i>
       </button>
       <theme-picker></theme-picker>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <button *ngIf="true" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">

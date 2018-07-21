@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, ChangeDetectionStrategy, NgModule} from '@angular/core';
+import {Component, ViewEncapsulation, ChangeDetectionStrategy, NgModule, OnInit} from '@angular/core';
 import {StyleManager} from '../style-manager/style-manager';
 import {CommonModule} from '@angular/common';
 import { MaterialModule } from '../material.module';
@@ -12,31 +12,31 @@ import { MaterialModule } from '../material.module';
   encapsulation: ViewEncapsulation.None,
   host: {'aria-hidden': 'true'},
 })
-export class ThemePicker {
+export class ThemePicker implements OnInit{
   currentTheme;
 
   themes = [
     {
-      style: "deeppurple-amber",
+      style: "deeppurple-amber-theme",
       primary: '#673AB7',
       accent: '#FFC107',
       isDefault: true,
       isDark: false,
     },
     {
-      style: "indigo-pink",
+      style: "indigo-pink-theme",
       primary: '#3F51B5',
       accent: '#E91E63',
       isDark: false,
     },
     {
-      style: "pink-bluegrey",
+      style: "pink-bluegrey-theme",
       primary: '#E91E63',
       accent: '#607D8B',
       isDark: true,
     },
     {
-      style: "purple-green",
+      style: "purple-green-theme",
       primary: '#9C27B0',
       accent: '#4CAF50',
       isDark: true,
@@ -50,7 +50,13 @@ export class ThemePicker {
 
   installTheme(style) {
     this.currentTheme = style;
+    console.log(style);
     this.styleManager.setStyles(style);
+  }
+
+  ngOnInit()
+  {
+    this.styleManager.setStyles(this.styleManager.model);
   }
 }
 

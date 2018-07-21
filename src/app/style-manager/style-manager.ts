@@ -1,5 +1,8 @@
-import {Injectable} from '@angular/core';
-import { setStyles } from '../../../node_modules/@angular/animations/browser/src/util';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { OverlayContainer } from '../../../node_modules/@angular/cdk/overlay';
+import { Observable } from '../../../node_modules/rxjs';
+import { BreakpointObserver, Breakpoints } from '../../../node_modules/@angular/cdk/layout';
 
 
 /**
@@ -8,16 +11,27 @@ import { setStyles } from '../../../node_modules/@angular/animations/browser/src
  */
 @Injectable()
 export class StyleManager {
-  
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
+
+  overlay;
+
   model = {
-    style: "deeppurple-amber",
+    style: "deeppurple-amber-theme",
     primary: '#673AB7',
     accent: '#FFC107',
     isDefault: true,
     isDark: false,
   };
 
+  constructor(private overlayContainer: OverlayContainer,
+    private breakpointObserver: BreakpointObserver) {
+    this.overlay = overlayContainer.getContainerElement();
+  }
+
   setStyles(style) {
+    this.overlay.classList.remove(this.model.style);
+    this.overlay.classList.add(style.style);
     this.model = style;
   }
 }

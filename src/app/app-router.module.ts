@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'events', component: EventComponent },
+  { path: 'event', component: EventComponent },
   { path: 'wishbox', component: WishboxComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
