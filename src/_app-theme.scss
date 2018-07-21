@@ -1,0 +1,58 @@
+@import '~@angular/material/theming';
+
+@import './app/themes/component-category-list/component-category-list-theme';
+@import './app/themes/component-list/component-list-theme';
+@import './app/themes/component-sidenav/component-sidenav-theme';
+@import './app/themes/component-viewer/component-viewer-theme';
+@import './app/themes/guide-list/guide-list-theme';
+@import './app/themes/homepage/homepage-theme';
+@import './app/themes/example-viewer/example-viewer-theme';
+@import './app/themes/footer/footer-theme';
+@import './app/themes/navbar/navbar-theme';
+@import './app/themes/table-of-contents/table-of-contents-theme';
+@import './app/themes/api-theme';
+@import './app/themes/markdown-theme';
+@import './app/themes/svg-theme';
+@import './app/themes/tables-theme';
+
+
+// Styles for the docs app that are based on the current theme.
+@mixin material-docs-app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .docs-app-background {
+    background: mat-color($background, background);
+  }
+
+  .docs-primary-header {
+    background: mat-color($primary);
+
+    h1 {
+      color: mat-color($primary, default-contrast);
+    }
+  }
+
+  .docs-footer {
+    background: mat-color($primary);
+    color: mat-color($primary, default-contrast);
+  }
+
+  @include component-category-list-theme($theme);
+  @include component-list-theme($theme);
+  @include component-viewer-sidenav-theme($theme);
+  @include component-viewer-theme($theme);
+  @include docs-site-api-theme($theme);
+  @include docs-site-markdown-theme($theme);
+  @include docs-site-svg-theme($theme);
+  @include docs-site-tables-theme($theme);
+  @include example-viewer-theme($theme);
+  @include footer-theme($theme);
+  @include guide-list-theme($theme);
+  @include home-page-theme($theme);
+  @include nav-bar-theme($theme);
+  @include table-of-contents-theme($theme);
+}

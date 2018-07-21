@@ -1,0 +1,7 @@
+@import '../../app-theme';
+
+// Define the light theme.
+$primary: mat-palette($mat-deep-purple);
+$accent:  mat-palette($mat-amber, A200, A100, A400);
+
+$deeppurple-amber-theme: mat-light-theme($primary, $accent);

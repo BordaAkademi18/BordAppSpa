@@ -1,28 +1,55 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"   
-    [attr.role]="dialog"
-    [mode]="over"
-    [opened]="false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="dialog" [mode]="over" [opened]="false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/main">Dashboard</a>
-      <a mat-list-item routerLink="/login">Events</a>
-      <a mat-list-item routerLink="/wishbox">Wishbox</a>
+      <a mat-list-item routerLink="/main">
+        <mat-icon color="primary">dashboard</mat-icon>
+        <span>
+          Dashboard
+        </span></a>
+      <a mat-list-item routerLink="/event">
+        <mat-icon color="primary">event</mat-icon>
+        <span>
+          Events
+        </span></a>
+      <a mat-list-item routerLink="/wishbox">
+        <mat-icon color="primary">feedback</mat-icon>
+        <span>
+          Wishbox
+        </span></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
+    <mat-toolbar color="primary" class="toolbar">
+      <button id="navbarButton" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>BordAppSpa</span>
+      <span>Neta</span>
+      <span class="example-spacer"></span>
+      <button *ngIf="true" id="navbarSignInButton" type="button" mat-icon-button routerLink="/login" matTooltip="Log in"
+      tabindex="-1">
+        <i class="fas fa-user"></i>
+      </button>
+      <button *ngIf="true" id="navbarSignOutButton" type="button" mat-icon-button (click)="logOut('Sign out initiated.', 'Rollback')" 
+      matTooltip="Log out" 
+      tabindex="-1">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+      <theme-picker></theme-picker>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+          <mat-icon>info</mat-icon>
+          <span>About</span>
+        </button>
+      </mat-menu>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

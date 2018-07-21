@@ -5,8 +5,25 @@
 .sidenav {
   width: 200px;
 }
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
+#navBarButton{
+  position: relative;
+  left:-50px;
 }
+button:focus{
+  outline: none;
+}
+.toolbar {
+  position: fixed;
+  top: 0;
+  max-height: 27%;
+  z-index: 1;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
