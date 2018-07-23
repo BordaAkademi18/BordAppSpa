@@ -1,11 +1,32 @@
-<div class="container">
-  <mat-grid-list cols="4" rowHeight="1:1">
-    <mat-grid-tile colspan="4" rowspan="1" class="primary">AAA</mat-grid-tile>  
-    <mat-grid-tile colspan="1" rowspan="1" class="primary">BBB</mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="2" class="">CCC</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1"  class="primary">DDD</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1" class="">EEE</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1" class="">FFF</mat-grid-tile>
-    <mat-grid-tile colspan="4" rowspan="1" class="">GGG</mat-grid-tile>
-  </mat-grid-list>
+<div class="container py-5 maindiv">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <!-- form card login -->
+          <mat-card class="rounded-0 card">
+            <form>
+              <mat-toolbar color="primary">
+                <span>Login</span>
+              </mat-toolbar>
+              <mat-form-field class="rounded-0 control">
+                <input matInput placeholder="Enter your email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+              <mat-form-field class="rounded-0 control">
+                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                <mat-icon class="toggleIcon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+            </form>
+            <div>
+              <mat-checkbox class="example-margin" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Rememeber me</mat-checkbox>
+              <button mat-raised-button type="submit" class="loginButton btn btn-lg float-right" id="btnLogin" color="primary">
+                Login
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

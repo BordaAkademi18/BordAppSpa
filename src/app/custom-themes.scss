@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+/*
+@include angular-material-theme($theme);
+@include material-docs-app-theme($theme);*/
+
+@import "../assets/custom-themes/deeppurple-amber.scss";
+@import "../assets/custom-themes/indigo-pink.scss";
+@import "../assets/custom-themes/pink-bluegrey.scss";
+@import "../assets/custom-themes/purple-green.scss";
+
+.deeppurple-amber-theme {
+    @include angular-material-theme($deeppurple-amber-theme);
+    @include material-docs-app-theme($deeppurple-amber-theme);
+}
+
+.indigo-pink-theme {
+    @include angular-material-theme($indigo-pink-theme);
+    @include material-docs-app-theme($indigo-pink-theme);
+}
+
+.pink-bluegrey-theme {
+    @include angular-material-theme($pink-bluegrey-theme);
+    @include material-docs-app-theme($pink-bluegrey-theme);
+}
+
+.purple-green-theme {
+    @include angular-material-theme($purple-green-theme);
+    @include material-docs-app-theme($purple-green-theme);
+}
