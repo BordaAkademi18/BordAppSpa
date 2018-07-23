@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '../../../node_modules/@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { StyleManager } from '../style-manager';
 
 export interface Tile {

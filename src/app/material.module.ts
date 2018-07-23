@@ -18,7 +18,8 @@ import {
   MatNativeDateModule,
   MatDividerModule,
   MatChipsModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatRadioModule
 } from '@angular/material';
 
 
@@ -43,7 +44,8 @@ import {
       MatNativeDateModule,
       MatDividerModule,
       MatChipsModule,
-      MatAutocompleteModule
+      MatAutocompleteModule,
+      MatRadioModule
     ],
     exports: [
       LayoutModule,
@@ -64,7 +66,8 @@ import {
       MatNativeDateModule,
       MatDividerModule,
       MatChipsModule,
-      MatAutocompleteModule
+      MatAutocompleteModule,
+      MatRadioModule
     ],
   }
 )

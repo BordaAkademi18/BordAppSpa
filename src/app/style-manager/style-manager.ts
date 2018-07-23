@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { OverlayContainer } from '../../../node_modules/@angular/cdk/overlay';
-import { Observable } from '../../../node_modules/rxjs';
-import { BreakpointObserver, Breakpoints } from '../../../node_modules/@angular/cdk/layout';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 /**

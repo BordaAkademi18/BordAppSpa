@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MatSnackBar } from '../../../node_modules/@angular/material';
-import { Router } from '../../../node_modules/@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',

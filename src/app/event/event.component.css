@@ -1,6 +1,6 @@
 .main-events {
-    margin: 3rem 0;
-    padding: 0 1rem;
+    margin: 3rem auto;
+    padding: 0 0.5rem;
 }
 
 .example-headers-align .mat-expansion-panel-header-title, 
@@ -34,4 +34,13 @@ input[type="time"]::-webkit-clear-button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin: 0.5%;
 }

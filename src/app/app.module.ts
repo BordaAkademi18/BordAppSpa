@@ -1,9 +1,11 @@
+  /// <reference path="../../node_modules/bingmaps/types/MicrosoftMaps/Microsoft.Maps.All.d.ts" />
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { AppRouterModule } from './app-router.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
@@ -13,7 +15,9 @@ import { LoginComponent } from './login/login.component';
 import { EventComponent } from './event/event.component';
 import { WishboxComponent } from './wishbox/wishbox.component';
 import { ThemePickerModule } from './theme-picker';
+
 import { StyleManager } from './style-manager';
+import { SearchQueryService } from './event/search-query.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +36,10 @@ import { StyleManager } from './style-manager';
     FormsModule,
     AppRouterModule,
     ReactiveFormsModule,
-    ThemePickerModule
+    ThemePickerModule,
+    HttpClientModule    
   ],
-  providers: [ StyleManager ],
+  providers: [StyleManager, SearchQueryService],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
