@@ -7,10 +7,11 @@
             <mat-panel-title class="example-description">
               Event details
             </mat-panel-title>
-            <mat-panel-description class="example-description">
+            <mat-panel-description class="example-description" *ngIf="!(this.styleManager.isHandset$ | async)">
               Type event name and additional info
-              <mat-icon>account_circle</mat-icon>
             </mat-panel-description>
+            <span class="example-spacer"></span>
+            <mat-icon>account_circle</mat-icon>
           </mat-expansion-panel-header>
           <div class="input-field">
             <mat-form-field class="rounded-0 control example-spacer">
@@ -36,17 +37,18 @@
             <mat-panel-title class="example-description">
               Where to attend
             </mat-panel-title>
-            <mat-panel-description class="example-description">
+            <mat-panel-description class="example-description" *ngIf="!(this.styleManager.isHandset$ | async)">
               Type the event place
-              <mat-icon>map</mat-icon>
             </mat-panel-description>
+            <span class="example-spacer"></span>
+            <mat-icon>map</mat-icon>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <div id='searchBoxContainer'>              
-              <input id='searchBox' matInput placeholder="Place" (keyup.enter)="this.geocode()">
+          <div id="map" style="width: 100%; height: 400px"></div>
+          <div class="row">
+            <div class="span6" style="float: none; margin: 1rem auto 0 auto">
+              <button mat-raised-button color="primary" (click)="this.selectPoint()">Select Place</button>
             </div>
-          </mat-form-field>
-          <div id="map" #ymaps style="width: 100%; height: 400px"></div>
+          </div>
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Previous</button>
             <button mat-button color="primary" (click)="nextStep()">Next</button>
@@ -57,20 +59,21 @@
             <mat-panel-title class="example-description">
               When to attend
             </mat-panel-title>
-            <mat-panel-description class="example-description">
+            <mat-panel-description class="example-description" *ngIf="!(this.styleManager.isHandset$ | async)">
               Give the details about time
-              <mat-icon>date_range</mat-icon>
             </mat-panel-description>
+            <span class="example-spacer"></span>
+            <mat-icon>date_range</mat-icon>
           </mat-expansion-panel-header>
           <div class="input-field">
             <mat-form-field class="rounded-0 control px-3 example-spacer">
-              <input matInput [matDatepicker]="picker" [min]="this.minDate" [max]="this.maxDate" placeholder="Choose a date" disabled>
+              <input matInput #dateInput [matDatepicker]="picker" [min]="this.minDate" [max]="this.maxDate" placeholder="Choose a date" disabled [(value)]="this.eventDate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
             </mat-form-field>
             <span class="example-spacer"></span>
             <mat-form-field class="rounded-0 control px-3 example-spacer">
-              <input type="time" matInput placeholder="Choose a time">
+              <input type="time" #timeInput matInput placeholder="Choose a time" [value]="this.eventTime">
             </mat-form-field>
           </div>
           <mat-action-row>
@@ -83,10 +86,11 @@
             <mat-panel-title class="example-description">
               Who to notify
             </mat-panel-title>
-            <mat-panel-description class="example-description">
+            <mat-panel-description class="example-description" *ngIf="!(this.styleManager.isHandset$ | async)">
               Select the people you want to notify
-              <mat-icon>contacts</mat-icon>
             </mat-panel-description>
+            <span class="example-spacer"></span>
+            <mat-icon>contacts</mat-icon>
           </mat-expansion-panel-header>
           <mat-form-field class="example-full-width">
             <mat-chip-list #chipList>
@@ -105,9 +109,33 @@
           </mat-form-field>
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Previous</button>
-            <button mat-button color="primary" (click)="nextStep()">Submit Event</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="example-description">
+              Extra options
+            </mat-panel-title>
+            <mat-panel-description class="example-description" *ngIf="!(this.styleManager.isHandset$ | async)">
+              Select the other options
+            </mat-panel-description>
+            <span class="example-spacer"></span>
+            <mat-icon>settings</mat-icon>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <mat-form-field class="example-full-width px-3">
+              <input matInput #numberOfPeople type="number" placeholder="Number of required people" [(value)]="this.eventNumberOfRequiredPeople">
+            </mat-form-field>
+          </div>
+          <div class="row px-3">
+              <mat-checkbox #isAvailable class="example-margin" [(ngModel)]="this.eventIsAvailableToEveryone">Check if this event is available to everyone</mat-checkbox>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="submitEvent()">Submit Event</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-</div>
+  </div>
